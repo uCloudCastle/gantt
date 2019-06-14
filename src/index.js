@@ -697,6 +697,7 @@ export default class Gantt {
             bars.forEach(bar => {
                 const $bar = bar.$bar;
                 $bar.finaldx = this.get_snap_position(dx);
+                bar.draw_label();
 
                 if (is_resizing_left) {
                     if (parent_bar_id === bar.task.id) {
