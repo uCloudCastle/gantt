@@ -697,7 +697,6 @@ export default class Gantt {
             bars.forEach(bar => {
                 const $bar = bar.$bar;
                 $bar.finaldx = this.get_snap_position(dx);
-                bar.draw_label();
 
                 if (is_resizing_left) {
                     if (parent_bar_id === bar.task.id) {
@@ -787,6 +786,7 @@ export default class Gantt {
             $.attr($bar_progress, 'width', $bar_progress.owidth + dx);
             $.attr($handle, 'points', bar.get_progress_polygon_points());
             $bar_progress.finaldx = dx;
+            bar.draw_label();
         });
 
         $.on(this.$svg, 'mouseup', () => {
