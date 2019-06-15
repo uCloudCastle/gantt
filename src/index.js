@@ -786,7 +786,6 @@ export default class Gantt {
             $.attr($bar_progress, 'width', $bar_progress.owidth + dx);
             $.attr($handle, 'points', bar.get_progress_polygon_points());
             $bar_progress.finaldx = dx;
-            bar.draw_label();
         });
 
         $.on(this.$svg, 'mouseup', () => {

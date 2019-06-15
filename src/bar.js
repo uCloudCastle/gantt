@@ -263,6 +263,9 @@ export default class Bar {
     progress_changed() {
         const new_progress = this.compute_progress();
         this.task.progress = new_progress;
+        const label = this.group.querySelector('.bar-label');
+
+        console.log('[src/bar.js] [LINE: 268] [TIME: 13:18:50]', label);
         this.gantt.trigger_event('progress_change', [this.task, new_progress]);
     }
 
