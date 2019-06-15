@@ -278,7 +278,7 @@ export default class Bar {
 
     set_action_completed() {
         this.action_completed = true;
-        setTimeout(() => (this.action_completed = false), 500);
+        setTimeout(() => {this.action_completed = false}, 500);
     }
 
     compute_start_end_date() {

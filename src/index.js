@@ -790,7 +790,6 @@ export default class Gantt {
 
         $.on(this.$svg, 'mouseup', () => {
             is_resizing = false;
-            this.bar_being_dragged = null;
             if (!($bar_progress && $bar_progress.finaldx)) return;
             bar.progress_changed();
             bar.set_action_completed();

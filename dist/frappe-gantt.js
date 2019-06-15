@@ -723,7 +723,7 @@ class Bar {
 
     set_action_completed() {
         this.action_completed = true;
-        setTimeout(() => (this.action_completed = false), 500);
+        setTimeout(() => {this.action_completed = false;}, 500);
     }
 
     compute_start_end_date() {
@@ -1804,7 +1804,6 @@ class Gantt {
 
         $.on(this.$svg, 'mouseup', () => {
             is_resizing = false;
-            this.bar_being_dragged = null;
             if (!($bar_progress && $bar_progress.finaldx)) return;
             bar.progress_changed();
             bar.set_action_completed();
