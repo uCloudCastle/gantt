@@ -623,9 +623,6 @@ class Bar {
     setup_click_event() {
         $.on(this.group, 'focus ' + this.gantt.options.popup_trigger, e => {
             if (this.action_completed) {
-
-              console.log('[src/bar.js] [LINE: 197] [show_popup]', 'action_completed');
-
               // just finished a move action, wait for a few seconds
               return;
             }
@@ -643,12 +640,8 @@ class Bar {
 
     show_popup() {
         if (this.gantt.bar_being_dragged) {
-          console.log('[src/bar.js] [LINE: 197] [show_popup]', 'bar_being_dragged');
           return;
         }
-
-        console.log('[src/bar.js] [LINE: 197] [show_popup]', 'show_popup');
-
         const start_date = date_utils.format(this.task._start, 'MMM D', this.gantt.options.language);
         const end_date = date_utils.format(
             date_utils.add(this.task._end, -1, 'second'),
@@ -722,12 +715,9 @@ class Bar {
     }
 
     set_action_completed() {
-      console.log('[src/bar.js] [LINE: 282] [111]', '' + this.action_completed);
         this.action_completed = true;
         setTimeout(() => {
           this.action_completed = false;
-          console.log('[src/bar.js] [LINE: 282] [222]', '' + this);
-          console.log('[src/bar.js] [LINE: 282] [333]', '' + this.action_completed);
         }, 500);
     }
 
@@ -1741,7 +1731,6 @@ class Gantt {
         });
 
         document.addEventListener('mouseup', e => {
-            console.log('[src/index.js] [LINE: 725] [docu mouseup]', '00');
             if (is_dragging || is_resizing_left || is_resizing_right) {
                 bars.forEach(bar => bar.group.classList.remove('active'));
             }
@@ -1752,7 +1741,6 @@ class Gantt {
         });
 
         $.on(this.$svg, 'mouseup', e => {
-            console.log('[src/index.js] [LINE: 725] [svg mouseup]', '111');
             this.bar_being_dragged = null;
             bars.forEach(bar => {
                 const $bar = bar.$bar;
@@ -1810,7 +1798,6 @@ class Gantt {
         });
 
         $.on(this.$svg, 'mouseup', () => {
-            console.log('[src/index.js] [LINE: 725] [svg mouseup]', '222');
             is_resizing = false;
             if (!($bar_progress && $bar_progress.finaldx)) return;
             bar.progress_changed();
