@@ -722,8 +722,13 @@ class Bar {
     }
 
     set_action_completed() {
+      console.log('[src/bar.js] [LINE: 282] [111]', '' + this.action_completed);
         this.action_completed = true;
-        setTimeout(() => {this.action_completed = false;}, 500);
+        setTimeout(() => {
+          console.log('[src/bar.js] [LINE: 282] [222]', '' + this);
+          console.log('[src/bar.js] [LINE: 282] [333]', '' + this.action_completed);
+          this.action_completed = false;
+        }, 500);
     }
 
     compute_start_end_date() {
