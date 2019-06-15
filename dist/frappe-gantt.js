@@ -623,8 +623,11 @@ class Bar {
     setup_click_event() {
         $.on(this.group, 'focus ' + this.gantt.options.popup_trigger, e => {
             if (this.action_completed) {
-                // just finished a move action, wait for a few seconds
-                return;
+
+              console.log('[src/bar.js] [LINE: 197] [show_popup]', 'action_completed');
+
+              // just finished a move action, wait for a few seconds
+              return;
             }
 
             if (e.type === 'click') {
@@ -639,7 +642,12 @@ class Bar {
     }
 
     show_popup() {
-        if (this.gantt.bar_being_dragged) return;
+        if (this.gantt.bar_being_dragged) {
+          console.log('[src/bar.js] [LINE: 197] [show_popup]', 'bar_being_dragged');
+          return;
+        }
+
+        console.log('[src/bar.js] [LINE: 197] [show_popup]', 'show_popup');
 
         const start_date = date_utils.format(this.task._start, 'MMM D', this.gantt.options.language);
         const end_date = date_utils.format(
@@ -715,7 +723,7 @@ class Bar {
 
     set_action_completed() {
         this.action_completed = true;
-        setTimeout(() => (this.action_completed = false), 1000);
+        setTimeout(() => (this.action_completed = false), 500);
     }
 
     compute_start_end_date() {
@@ -1796,6 +1804,7 @@ class Gantt {
 
         $.on(this.$svg, 'mouseup', () => {
             is_resizing = false;
+            this.bar_being_dragged = null;
             if (!($bar_progress && $bar_progress.finaldx)) return;
             bar.progress_changed();
             bar.set_action_completed();
