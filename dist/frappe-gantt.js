@@ -725,9 +725,9 @@ class Bar {
       console.log('[src/bar.js] [LINE: 282] [111]', '' + this.action_completed);
         this.action_completed = true;
         setTimeout(() => {
+          this.action_completed = false;
           console.log('[src/bar.js] [LINE: 282] [222]', '' + this);
           console.log('[src/bar.js] [LINE: 282] [333]', '' + this.action_completed);
-          this.action_completed = false;
         }, 500);
     }
 
@@ -1741,6 +1741,7 @@ class Gantt {
         });
 
         document.addEventListener('mouseup', e => {
+            console.log('[src/index.js] [LINE: 725] [docu mouseup]', '00');
             if (is_dragging || is_resizing_left || is_resizing_right) {
                 bars.forEach(bar => bar.group.classList.remove('active'));
             }
@@ -1751,6 +1752,7 @@ class Gantt {
         });
 
         $.on(this.$svg, 'mouseup', e => {
+            console.log('[src/index.js] [LINE: 725] [svg mouseup]', '111');
             this.bar_being_dragged = null;
             bars.forEach(bar => {
                 const $bar = bar.$bar;
@@ -1808,10 +1810,10 @@ class Gantt {
         });
 
         $.on(this.$svg, 'mouseup', () => {
+            console.log('[src/index.js] [LINE: 725] [svg mouseup]', '222');
             is_resizing = false;
             if (!($bar_progress && $bar_progress.finaldx)) return;
             bar.progress_changed();
-            bar.set_action_completed();
         });
     }
 

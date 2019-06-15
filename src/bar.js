@@ -280,9 +280,9 @@ export default class Bar {
       console.log('[src/bar.js] [LINE: 282] [111]', '' + this.action_completed);
         this.action_completed = true;
         setTimeout(() => {
+          this.action_completed = false;
           console.log('[src/bar.js] [LINE: 282] [222]', '' + this);
           console.log('[src/bar.js] [LINE: 282] [333]', '' + this.action_completed);
-          this.action_completed = false;
         }, 500);
     }
 
